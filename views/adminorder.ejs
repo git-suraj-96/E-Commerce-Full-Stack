@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Orders Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#137fec",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+            },
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+    </style>
+  </head>
+  <body class="font-display bg-background-light dark:bg-background-dark">
+    <div
+      class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden"
+    >
+      <div class="layout-container flex h-full grow flex-col">
+        <header
+          class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-b-[#233648] px-4 sm:px-6 lg:px-10 py-3 bg-white dark:bg-[#192633]"
+        >
+          <div class="flex items-center gap-4 text-slate-900 dark:text-white">
+            <div class="size-6 text-primary">
+              <svg
+                fill="none"
+                viewbox="0 0 48 48"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                ></path>
+                <path
+                  clip-rule="evenodd"
+                  d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819ZM9 15.8487L21 20.4805V37.6263L9 32.9945V15.8487ZM27 37.6263V20.4805L39 15.8487V32.9945L27 37.6263ZM25.354 2.29885C24.4788 1.98402 23.5212 1.98402 22.646 2.29885L4.98454 8.65208C3.7939 9.08038 3 10.2097 3 11.475V34.3663C3 36.0196 4.01719 37.5026 5.55962 38.098L22.9197 44.7987C23.6149 45.0671 24.3851 45.0671 25.0803 44.7987L42.4404 38.098C43.9828 37.5026 45 36.0196 45 34.3663V11.475C45 10.2097 44.2061 9.08038 43.0155 8.65208L25.354 2.29885Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                ></path>
+              </svg>
+            </div>
+            <h2
+              class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]"
+            >
+              Admin Dashboard
+            </h2>
+          </div>
+          <div class="flex flex-1 justify-end gap-2 md:gap-4">
+            <div class="hidden md:flex flex-1 justify-end">
+              <label class="flex flex-col min-w-40 !h-10 max-w-sm w-full">
+                <div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+                  <div
+                    class="text-slate-400 dark:text-[#92adc9] flex border border-r-0 border-slate-300 dark:border-[#233648] bg-slate-100 dark:bg-[#233648] items-center justify-center pl-3 rounded-l-lg"
+                  >
+                    <span class="material-symbols-outlined text-lg"
+                      >search</span
+                    >
+                  </div>
+                  <input
+                    class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-slate-900 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-slate-300 dark:border-[#233648] bg-slate-100 dark:bg-[#233648] h-full placeholder:text-slate-400 dark:placeholder:text-[#92adc9] px-4 rounded-l-none border-l-0 pl-2 text-sm font-normal leading-normal"
+                    placeholder="Search by Order ID or Customer Name..."
+                    value=""
+                  />
+                </div>
+              </label>
+            </div>
+            <div class="flex gap-2">
+              <button
+                class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 w-10 bg-slate-100 dark:bg-[#233648] text-slate-700 dark:text-white text-sm font-bold"
+              >
+                <span class="material-symbols-outlined text-xl"
+                  >notifications</span
+                >
+              </button>
+              <button
+                class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 w-10 bg-slate-100 dark:bg-[#233648] text-slate-700 dark:text-white text-sm font-bold"
+              >
+                <span class="material-symbols-outlined text-xl"
+                  >chat_bubble</span
+                >
+              </button>
+            </div>
+            <div
+              class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+              data-alt="User profile avatar"
+              style="
+                background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBlEAfpsGFzQQ7q09Vs_wyzUOE4w97dB3FI6ys4JkLbe2-8YwmcdC4ZkhN7UUwIHEpx273XkB7ViBaaO0i-iUdPJ30c0bVDT4xcAPQgFWeZ4dJdVfXzFEm6x8dmrkXEvU8BGepPG38G7qdQnGGrgsCcE6XoJPNeiV8sgEby6UNYQZCgYPTgjwKJItthp0P1AIndLECv31hUlgXZhlTUwz_D0a_xs6yQ9wZqOCR_lyb_YyEFv8igCoaJiGjH-BBUuJQj_YwISix5pKL0');
+              "
+            ></div>
+          </div>
+        </header>
+        <main class="flex-1 px-4 sm:px-6 lg:px-10 py-8">
+          <div class="max-w-7xl mx-auto">
+            <div class="flex flex-wrap justify-between items-center gap-4 mb-6">
+              <div class="flex min-w-72 flex-col gap-1">
+                <p
+                  class="text-slate-900 dark:text-white text-3xl font-black leading-tight tracking-[-0.033em]"
+                >
+                  Orders Dashboard
+                </p>
+                <p
+                  class="text-slate-500 dark:text-[#92adc9] text-base font-normal leading-normal"
+                >
+                  Manage and track all customer orders
+                </p>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-2 mb-6">
+              <button
+                class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-slate-200 dark:bg-[#233648] px-3"
+              >
+                <p
+                  class="text-slate-700 dark:text-white text-sm font-medium leading-normal"
+                >
+                  Filter by Status
+                </p>
+                <span
+                  class="material-symbols-outlined text-slate-500 dark:text-white text-lg"
+                  >arrow_drop_down</span
+                >
+              </button>
+              <button
+                class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-slate-200 dark:bg-[#233648] px-3"
+              >
+                <p
+                  class="text-slate-700 dark:text-white text-sm font-medium leading-normal"
+                >
+                  Sort by Date
+                </p>
+                <span
+                  class="material-symbols-outlined text-slate-500 dark:text-white text-lg"
+                  >arrow_drop_down</span
+                >
+              </button>
+            </div>
+            <div class="flex flex-col gap-6">
+                <!-- order item -->
+                <% if(orders.length > 0){%>
+                    <%orders.forEach(order => {%>
+                        <div
+                class="flex flex-col rounded-xl bg-white dark:bg-[#192633] shadow-sm overflow-hidden border border-slate-200 dark:border-slate-800"
+              >
+                <div
+                  class="flex items-center justify-between gap-4 p-4 border-b border-slate-200 dark:border-slate-800"
+                >
+                  <p
+                    class="text-slate-600 dark:text-[#92adc9] text-sm font-semibold"
+                  >
+                    Order ID: <%= order.orderId %>
+                  </p>
+                  <div
+                    class="flex items-center justify-center rounded-full bg-orange-100 dark:bg-orange-500/20 px-3 py-1"
+                  >
+                    <p
+                      class="text-xs font-bold text-orange-600 dark:text-orange-400"
+                    >
+                      <%= order.orderStatus %>
+                    </p>
+                  </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+                  <div
+                    class="p-4 grid grid-cols-[35%_1fr] sm:grid-cols-[25%_1fr] gap-x-6"
+                  >
+                    <div class="col-span-2 py-2">
+                      <p
+                        class="text-slate-800 dark:text-white font-bold text-base"
+                      >
+                        Customer Information
+                      </p>
+                    </div>
+                    <div
+                      class="col-span-2 grid grid-cols-subgrid border-t border-t-slate-200 dark:border-t-[#324d67] py-3"
+                    >
+                      <p
+                        class="text-slate-500 dark:text-[#92adc9] text-sm font-normal leading-normal"
+                      >
+                        Username
+                      </p>
+                      <p
+                        class="text-slate-900 dark:text-white text-sm font-normal leading-normal"
+                      >
+                        <%=  order.fullAddress.username %>
+                      </p>
+                    </div>
+                    <div
+                      class="col-span-2 grid grid-cols-subgrid border-t border-t-slate-200 dark:border-t-[#324d67] py-3"
+                    >
+                      <p
+                        class="text-slate-500 dark:text-[#92adc9] text-sm font-normal leading-normal"
+                      >
+                        Mobile Number
+                      </p>
+                      <p
+                        class="text-slate-900 dark:text-white text-sm font-normal leading-normal"
+                      >
+                        +91 <%=  order.fullAddress.userMobileNo %>
+                      </p>
+                    </div>
+                    <div
+                      class="col-span-2 grid grid-cols-subgrid border-t border-t-slate-200 dark:border-t-[#324d67] py-3"
+                    >
+                      <p
+                        class="text-slate-500 dark:text-[#92adc9] text-sm font-normal leading-normal"
+                      >
+                        Address
+                      </p>
+                      <p
+                        class="text-slate-900 dark:text-white text-sm font-normal leading-normal"
+                      >
+                        <%=  order.fullAddress.userAdd %>, <%= order.fullAddress.city %>, <%= order.fullAddress.state %>, <%= order.fullAddress.country %>
+                      </p>
+                    </div>
+                    <div
+                      class="col-span-2 grid grid-cols-subgrid border-t border-t-slate-200 dark:border-t-[#324d67] py-3"
+                    >
+                      <p
+                        class="text-slate-500 dark:text-[#92adc9] text-sm font-normal leading-normal"
+                      >
+                        Payment
+                      </p>
+                      <p
+                        class="text-slate-900 dark:text-white text-sm font-normal leading-normal"
+                      >
+                        COD
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="p-4 md:border-l border-slate-200 dark:border-slate-800 flex flex-col gap-4"
+                  >
+                    <div class="py-2">
+                      <p
+                        class="text-slate-800 dark:text-white font-bold text-base"
+                      >
+                        Product Details
+                      </p>
+                    </div>
+                    <div class="flex items-start justify-between gap-4">
+                      <div class="flex flex-[2_2_0px] flex-col gap-2">
+                        <p
+                          class="text-slate-900 dark:text-white text-base font-bold leading-tight"
+                        >
+                          <%=  order.productId.description%>
+                        </p>
+                        <p
+                          class="text-slate-500 dark:text-[#92adc9] text-sm font-normal leading-normal"
+                        >
+                          ₹ <%= order.productId.price %>
+                        </p>
+                        <p
+                          class="text-slate-500 dark:text-[#92adc9] text-sm font-normal leading-normal mt-1"
+                        >
+                          <span
+                            class="font-semibold text-slate-600 dark:text-slate-300"
+                            >Category:</span
+                          >
+                          <%= order.productId.category %>
+                        </p>
+                      </div>
+                      <div
+                        class="w-24 h-24 sm:w-28 sm:h-28 bg-center bg-no-repeat aspect-square bg-cover rounded-lg flex-shrink-0"
+                        data-alt="Vintage Leather Wallet"
+                        style="
+                          background-image: url('/images/uploads/<%= order.productId.productImage %>');
+                        "
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                    <%})%>
+                <%}%>
+
+                
+              <!-- Order ui example -->
+              <!-- <div
+                class="flex flex-col rounded-xl bg-white dark:bg-[#192633] shadow-sm overflow-hidden border border-slate-200 dark:border-slate-800"
+              >
+                <div
+                  class="flex items-center justify-between gap-4 p-4 border-b border-slate-200 dark:border-slate-800"
+                >
+                  <p
+                    class="text-slate-600 dark:text-[#92adc9] text-sm font-semibold"
+                  >
+                    Order ID: ORD-12345XYZ
+                  </p>
+                  <div
+                    class="flex items-center justify-center rounded-full bg-orange-100 dark:bg-orange-500/20 px-3 py-1"
+                  >
+                    <p
+                      class="text-xs font-bold text-orange-600 dark:text-orange-400"
+                    >
+                      PENDING
+                    </p>
+                  </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+                  <div
+                    class="p-4 grid grid-cols-[35%_1fr] sm:grid-cols-[25%_1fr] gap-x-6"
+                  >
+                    <div class="col-span-2 py-2">
+                      <p
+                        class="text-slate-800 dark:text-white font-bold text-base"
+                      >
+                        Customer Information
+                      </p>
+                    </div>
+                    <div
+                      class="col-span-2 grid grid-cols-subgrid border-t border-t-slate-200 dark:border-t-[#324d67] py-3"
+                    >
+                      <p
+                        class="text-slate-500 dark:text-[#92adc9] text-sm font-normal leading-normal"
+                      >
+                        Username
+                      </p>
+                      <p
+                        class="text-slate-900 dark:text-white text-sm font-normal leading-normal"
+                      >
+                        John Doe
+                      </p>
+                    </div>
+                    <div
+                      class="col-span-2 grid grid-cols-subgrid border-t border-t-slate-200 dark:border-t-[#324d67] py-3"
+                    >
+                      <p
+                        class="text-slate-500 dark:text-[#92adc9] text-sm font-normal leading-normal"
+                      >
+                        Mobile Number
+                      </p>
+                      <p
+                        class="text-slate-900 dark:text-white text-sm font-normal leading-normal"
+                      >
+                        +1 234 567 890
+                      </p>
+                    </div>
+                    <div
+                      class="col-span-2 grid grid-cols-subgrid border-t border-t-slate-200 dark:border-t-[#324d67] py-3"
+                    >
+                      <p
+                        class="text-slate-500 dark:text-[#92adc9] text-sm font-normal leading-normal"
+                      >
+                        Address
+                      </p>
+                      <p
+                        class="text-slate-900 dark:text-white text-sm font-normal leading-normal"
+                      >
+                        123 Market Street, Apt 4B, San Francisco, CA 94103, USA
+                      </p>
+                    </div>
+                    <div
+                      class="col-span-2 grid grid-cols-subgrid border-t border-t-slate-200 dark:border-t-[#324d67] py-3"
+                    >
+                      <p
+                        class="text-slate-500 dark:text-[#92adc9] text-sm font-normal leading-normal"
+                      >
+                        Payment
+                      </p>
+                      <p
+                        class="text-slate-900 dark:text-white text-sm font-normal leading-normal"
+                      >
+                        Credit Card
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="p-4 md:border-l border-slate-200 dark:border-slate-800 flex flex-col gap-4"
+                  >
+                    <div class="py-2">
+                      <p
+                        class="text-slate-800 dark:text-white font-bold text-base"
+                      >
+                        Product Details
+                      </p>
+                    </div>
+                    <div class="flex items-start justify-between gap-4">
+                      <div class="flex flex-[2_2_0px] flex-col gap-2">
+                        <p
+                          class="text-slate-900 dark:text-white text-base font-bold leading-tight"
+                        >
+                          Vintage Leather Wallet
+                        </p>
+                        <p
+                          class="text-slate-500 dark:text-[#92adc9] text-sm font-normal leading-normal"
+                        >
+                          $49.99 - A classic bifold wallet made from genuine
+                          leather.
+                        </p>
+                        <p
+                          class="text-slate-500 dark:text-[#92adc9] text-sm font-normal leading-normal mt-1"
+                        >
+                          <span
+                            class="font-semibold text-slate-600 dark:text-slate-300"
+                            >Category:</span
+                          >
+                          Accessories
+                        </p>
+                      </div>
+                      <div
+                        class="w-24 h-24 sm:w-28 sm:h-28 bg-center bg-no-repeat aspect-square bg-cover rounded-lg flex-shrink-0"
+                        data-alt="Vintage Leather Wallet"
+                        style="
+                          background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCuG5Dkz7cOWwbKKaIOOczlcBEqOfAunumN60skD0fGFxU8g4Pn68CtEM3dTp9DxaTsx3o5Xuf4Ub8ijk45Dh8yTFxPw8ouERMHKZEhAm7ibrhu2JKyCJLZH-uDFM-w3ZdoyjxWlVNbBudoajk5Bqz6TB4VL1_EippKtJzmNRYmiDcwgjuK_nSP19dnD8GhLIS0nzGqhmkkrj117Az_DThuO-WgnzbfcimDO3iVY--8yJZPPUyMwhRVFXmbjp_RCg237JeqK3Mp0XrU');
+                        "
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+\
+
+
+            </div>
+
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

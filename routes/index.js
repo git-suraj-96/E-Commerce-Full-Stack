@@ -138,6 +138,24 @@ router.get("/admin", function (req, res) {
   res.render("admin", { success: success[0] });
 });
 
+router.get('/adminorder', async function(req, res){
+  try{
+   const admin = await userModel
+  .findOne({ username: req.session.passport.user })
+  .populate({
+    path: "adminOrder",
+    populate: {
+      path: "productId",   // nested populate
+    },
+  });
+
+    const orders = await admin.adminOrder;
+    res.render("adminorder", {orders});
+  }catch(err){
+    console.log(err);
+  }
+})
+
 // upload image name on upload folder
 router.post(
   "/upload-image",
@@ -363,14 +381,21 @@ router.get("/checkoutpage", async function (req, res) {
 });
 
 // get confirmation page
-router.get("/orderConfirmation", function (req, res) {
-  res.render("orderconfirmationpage");
+router.get("/orderConfirmation4564587123853212836489798", async function (req, res) {
+  try{
+    const user = await userModel.findOne({username : req.session.passport.user});
+    const userOrder = await user.userOrder;
+    res.render("orderconfirmationpage", {userOrder});
+
+  }catch(err){
+    console.log(err);
+  }
 });
 
 // orderconfirmation
 router.post("/confirmOrder", async (req, res) => {
   try {
-    const fullAddress = {
+    const {
       username,
       userMobileNo,
       userAdd,
@@ -381,28 +406,46 @@ router.post("/confirmOrder", async (req, res) => {
       payMethod,
     } = req.body;
 
-    const user = await userModel.findOne({username : req.session.passport.user}).populate({
-      path: "cartItems",
-      populate: {
-        path: "createdBy",
-      },
-    });
+    const fullAddress = {
+      username,
+      userMobileNo,
+      userAdd,
+      city,
+      state,
+      Pincode,
+      country,
+      payMethod,
+    };
+
+    const user = await userModel
+      .findOne({ username: req.session.passport.user }).populate("cartItems");
 
     const cartItems = user.cartItems;
-    console.log(cartItems);
+    let uniqueId = null;
+    // console.log(user);
+    for (let val of cartItems) {
+      uniqueId = uuidv4();
+      let admin = await userModel.findById(val.createdBy);
+      admin.adminOrder.push({fullAddress, productId : val._id, orderId : uniqueId, orderStatus : "pending"});
+      await admin.save();
+    };
 
     for(let val of cartItems){
-      let uniqueId = uuidv4();
-      val.createdBy.order.push({fullAddress : fullAddress, productId : val._id, orderId : uniqueId});
+      user.userOrder.push({
+        orderStatus : "pending",
+        productId : val._id,
+        orderId : uniqueId
+      });
       await user.save();
     }
 
+    user.cartItems = [];
+    await user.save();
+
     return res.json({
-      success : true,
-      redirect : '/orderConfirmation'
-    })
-
-
+      success: true,
+      redirect: "/orderConfirmation4564587123853212836489798",
+    });
   } catch (err) {
     return res.json({
       success: false,
