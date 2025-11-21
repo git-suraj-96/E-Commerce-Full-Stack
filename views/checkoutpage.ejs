@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Checkout</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#135bec",
+              "background-light": "#f6f6f8",
+              "background-dark": "#101622",
+            },
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .cod {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .flash-message{
+        position: fixed;
+        top: 10px;
+        right: 12px;
+        background-color: red;
+        padding: 10px;
+        font-size: 15px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        display: none;
+        color: white;
+        border-radius: 4px;
+      }
+      @media (min-width:640px) {
+        .grid-box {
+          grid-template-columns: auto;
+        }
+        
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark font-display text-[#111318] dark:text-gray-200"
+  >
+    <div class="flex flex-col min-h-screen">
+      <header
+        class="flex items-center justify-center whitespace-nowrap border-b border-solid border-gray-200 dark:border-gray-800 bg-white dark:bg-background-dark w-full px-4 sm:px-6 lg:px-8"
+      >
+        <div class="flex items-center justify-between w-full max-w-7xl py-3">
+          <div class="flex items-center gap-4 text-[#111318] dark:text-white">
+            <div class="size-6 text-primary">
+              <svg
+                fill="none"
+                viewBox="0 0 48 48"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#clip0_6_319)">
+                  <path
+                    d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z"
+                    fill="currentColor"
+                  ></path>
+                </g>
+                <defs>
+                  <clipPath id="clip0_6_319">
+                    <rect fill="white" height="48" width="48"></rect>
+                  </clipPath>
+                </defs>
+              </svg>
+            </div>
+            <h2
+              class="text-[#111318] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]"
+            >
+              Mens-Maxing
+            </h2>
+          </div>
+          <div class="flex items-center gap-2">
+            <span
+              class="material-symbols-outlined text-gray-600 dark:text-gray-400"
+              >lock</span
+            >
+            <span class="text-sm font-medium text-gray-600 dark:text-gray-400"
+              >Secure Checkout</span
+            >
+          </div>
+        </div>
+      </header>
+      <main class="flex-grow w-full max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+        <div class="lg:grid lg:grid-cols-12 lg:gap-12">
+          <div class="lg:col-span-7">
+            <div class="mb-8">
+              <div class="flex flex-wrap justify-between gap-3 p-4">
+                <div class="flex min-w-72 flex-col gap-3">
+                  <p
+                    class="text-[#111318] dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]"
+                  >
+                    Checkout
+                  </p>
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-2 p-4">
+                <span class="text-primary text-base font-medium leading-normal"
+                  >Shipping</span
+                >
+                <span
+                  class="text-gray-400 dark:text-gray-600 text-base font-medium leading-normal"
+                  >/</span
+                >
+                <a
+                  class="text-[#616f89] dark:text-gray-400 text-base font-medium leading-normal"
+                  href="#billing"
+                  >Billing</a
+                >
+                <span
+                  class="text-gray-400 dark:text-gray-600 text-base font-medium leading-normal"
+                  >/</span
+                >
+                <a
+                  class="text-[#616f89] dark:text-gray-400 text-base font-medium leading-normal"
+                  href="#payment"
+                  >Payment</a
+                >
+              </div>
+            </div>
+            <div class="space-y-8">
+              <section>
+                <h2
+                  class="text-[#111318] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 border-b border-gray-200 dark:border-gray-800"
+                >
+                  1. Shipping Address
+                </h2>
+                <div
+                  class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 p-4"
+                >
+                  <label class="flex flex-col">
+                    <p
+                      class="text-[#111318] dark:text-gray-200 text-base font-medium leading-normal pb-2"
+                    >
+                      Full Name
+                    </p>
+                    <input
+                      class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111318] dark:text-gray-200 focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-gray-300 dark:border-gray-700 bg-white dark:bg-background-dark focus:border-primary h-14 placeholder:text-[#616f89] dark:placeholder:text-gray-500 p-[15px] text-base font-normal leading-normal full-name"
+                      placeholder="Enter your full name"
+                      value=""
+                    />
+                  </label>
+                  <label class="flex flex-col">
+                    <p
+                      class="text-[#111318] dark:text-gray-200 text-base font-medium leading-normal pb-2"
+                    >
+                      Mobile Number
+                    </p>
+                    <input
+                      class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111318] dark:text-gray-200 focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-gray-300 dark:border-gray-700 bg-white dark:bg-background-dark focus:border-primary h-14 placeholder:text-[#616f89] dark:placeholder:text-gray-500 p-[15px] text-base font-normal leading-normal mobile-number"
+                      placeholder="Enter your mobile number"
+                      type="tel"
+                      value=""
+                    />
+                  </label>
+                  <label class="flex flex-col sm:col-span-2">
+                    <p
+                      class="text-[#111318] dark:text-gray-200 text-base font-medium leading-normal pb-2"
+                    >
+                      Address
+                    </p>
+                    <input
+                      class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111318] dark:text-gray-200 focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-gray-300 dark:border-gray-700 bg-white dark:bg-background-dark focus:border-primary h-14 placeholder:text-[#616f89] dark:placeholder:text-gray-500 p-[15px] text-base font-normal leading-normal address"
+                      placeholder="123 Main Street"
+                      value=""
+                    />
+                  </label>
+                  <label class="flex flex-col">
+                    <p
+                      class="text-[#111318] dark:text-gray-200 text-base font-medium leading-normal pb-2"
+                    >
+                      City
+                    </p>
+                    <input
+                      class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111318] dark:text-gray-200 focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-gray-300 dark:border-gray-700 bg-white dark:bg-background-dark focus:border-primary h-14 placeholder:text-[#616f89] dark:placeholder:text-gray-500 p-[15px] text-base font-normal leading-normal city-name"
+                      placeholder="New York"
+                      value=""
+                    />
+                  </label>
+                  <label class="flex flex-col">
+                    <p
+                      class="text-[#111318] dark:text-gray-200 text-base font-medium leading-normal pb-2"
+                    >
+                      State / Province
+                    </p>
+                    <input
+                      class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111318] dark:text-gray-200 focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-gray-300 dark:border-gray-700 bg-white dark:bg-background-dark focus:border-primary h-14 placeholder:text-[#616f89] dark:placeholder:text-gray-500 p-[15px] text-base font-normal leading-normal state-name"
+                      placeholder="NY"
+                      value=""
+                    />
+                  </label>
+                  <label class="flex flex-col">
+                    <p
+                      class="text-[#111318] dark:text-gray-200 text-base font-medium leading-normal pb-2"
+                    >
+                      Zip / Postal Code
+                    </p>
+                    <input
+                      class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111318] dark:text-gray-200 focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-gray-300 dark:border-gray-700 bg-white dark:bg-background-dark focus:border-primary h-14 placeholder:text-[#616f89] dark:placeholder:text-gray-500 p-[15px] text-base font-normal leading-normal pin-code"
+                      placeholder="10001"
+                      value=""
+                    />
+                  </label>
+                  <label class="flex flex-col">
+                    <p
+                      class="text-[#111318] dark:text-gray-200 text-base font-medium leading-normal pb-2"
+                    >
+                      Country
+                    </p>
+                    <select
+                      class="form-select flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111318] dark:text-gray-200 focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-gray-300 dark:border-gray-700 bg-white dark:bg-background-dark focus:border-primary h-14 p-[15px] text-base font-normal leading-normal country-name"
+                    >
+                      <option>India</option>
+                    </select>
+                  </label>
+                </div>
+              </section>
+              <section id="billing">
+                <h2
+                  class="text-[#111318] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 border-b border-gray-200 dark:border-gray-800"
+                >
+                  2. Billing Information
+                </h2>
+                <div class="p-4">
+                  <div
+                    class="flex items-center space-x-3 bg-white dark:bg-gray-900/50 p-4 rounded-lg border border-gray-200 dark:border-gray-800"
+                  >
+                    <input
+                      checked=""
+                      class="h-5 w-5 rounded-md border-gray-300 dark:border-gray-600 text-primary focus:ring-primary bg-gray-100 dark:bg-gray-700"
+                      id="billing-same"
+                      name="billing-same"
+                      type="checkbox"
+                    />
+                    <label
+                      class="text-base font-medium text-[#111318] dark:text-gray-200"
+                      for="billing-same"
+                      >Billing address is the same as shipping</label
+                    >
+                  </div>
+                </div>
+              </section>
+              <section id="payment">
+                <h2
+                  class="text-[#111318] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 border-b border-gray-200 dark:border-gray-800"
+                >
+                  3. Payment Details
+                </h2>
+                <div class="p-4 space-y-6">
+                  <div class="grid grid-cols-1 sm:grid-cols-auto gap-4 grid-box">
+                    <div class="cod">
+                      <input
+                        type="checkbox"
+                        id="payment-method"
+                        class="p-4 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-background-dark hover:border-primary/50 dark:hover:border-primary/50 text-[#111318] dark:text-gray-200 checkbox"
+                      />
+                      <span
+                        class="material-symbols-outlined text-gray-600 dark:text-gray-400"
+                        >payments</span
+                      >
+                      <span class="font-bold">Cash on Delivery</span>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+          <div class="lg:col-span-5 mt-12 lg:mt-0">
+            <div
+              class="bg-white dark:bg-gray-900/50 rounded-xl p-6 lg:p-8 border border-gray-200 dark:border-gray-800 sticky top-8"
+            >
+              <h2
+                class="text-[#111318] dark:text-white text-2xl font-bold leading-tight tracking-[-0.015em] mb-6"
+              >
+                Order Summary
+              </h2>
+              <div class="space-y-4">
+                <%if(cartItems.length > 0){ %> <% cartItems.forEach(item => { %>
+                <div class="flex items-center gap-4">
+                  <img
+                    class="w-20 h-20 rounded-lg object-cover"
+                    data-alt="Red and white sports shoe on a plain background"
+                    src="/images/uploads/<%= item.productImage %>"
+                  />
+                  <div class="flex-grow">
+                    <p class="font-bold text-[#111318] dark:text-white">
+                      <%= item.description %>
+                    </p>
+                    <p class="text-sm text-[#616f89] dark:text-gray-400">
+                      Qty: 1
+                    </p>
+                  </div>
+                  <p class="font-bold text-[#111318] dark:text-white">
+                    ₹ <%= item.price %>
+                  </p>
+                </div>
+                <%})%> <%}%>
+
+                <!-- <div class="flex items-center gap-4">
+                  <img
+                    class="w-20 h-20 rounded-lg object-cover"
+                    data-alt="Red and white sports shoe on a plain background"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZfC-kxJCMVXgNT0Ovk2e9F2tYM-4qmStdeYEmnsa1TonHUwnN9nO6c0LvOKbMPczFWq7SjC27WDyVo5kMZiSvWzSSgJ98tbQKPPrXBHO-66vq9u330cZi2YeOjHdJJ7_ilpbQU0dPtY9vkuyIq621zTqM_c-3oWVMNgqha2fiqk2wHHFr3MN0zHUoz3WUUgAW-NlYZ4p041ifLrHVw7F6nzGjdBtbUHSAcb7QSIzoEURvvkmyr8th_jFjI6u4L1QelpF6PuVxEMM"
+                  />
+                  <div class="flex-grow">
+                    <p class="font-bold text-[#111318] dark:text-white">
+                      Running Shoes
+                    </p>
+                    <p class="text-sm text-[#616f89] dark:text-gray-400">
+                      Qty: 1
+                    </p>
+                  </div>
+                  <p class="font-bold text-[#111318] dark:text-white">₹99.00</p>
+                </div>
+                <div class="flex items-center gap-4">
+                  <img
+                    class="w-20 h-20 rounded-lg object-cover"
+                    data-alt="Modern wireless headphones in black on a white background"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAU2hphl7hZrOh_W1FMAyc0jx_NBYydmZ2gmM1McxNidtYl_ED8B4nLTRYoXh0Y9xVb51hCfcTCRdkHhdPh9V3egzO_xdqPCNp-dmVdAuyOyF0CyjBc-IZs5UXAoHDwC5wpHAXy9e8d75SPNV7ESPecn8b_Tf3ruy_bUVAynz35LcOKGNEqmSxrrJjDSBJx-MzuiCBS0R3yyqrphhBvrJEEwAHz4pYLdXE7N7tAUdldnktGdzILQz1PB1SWXoe8zbMFsMQXBnNEZ4"
+                  />
+                  <div class="flex-grow">
+                    <p class="font-bold text-[#111318] dark:text-white">
+                      Wireless Headphones
+                    </p>
+                    <p class="text-sm text-[#616f89] dark:text-gray-400">
+                      Qty: 1
+                    </p>
+                  </div>
+                  <p class="font-bold text-[#111318] dark:text-white">
+                    ₹149.00
+                  </p>
+                </div> -->
+              </div>
+              <div
+                class="mt-6 pt-6 border-t border-gray-200 dark:border-gray-800"
+              ></div>
+              <div
+                class="mt-6 pt-6 border-t border-gray-200 dark:border-gray-800 space-y-3 text-[#111318] dark:text-gray-200"
+              >
+                <div class="flex justify-between">
+                  <p>subtotal</p>
+                  <p>₹ <%= subtotal %></p>
+                </div>
+                <div class="flex justify-between">
+                  <p>Shipping</p>
+                  <p>₹ 30</p>
+                </div>
+                <div class="flex justify-between">
+                  <p>Taxes</p>
+                  <p>5%</p>
+                </div>
+                <div
+                  class="flex justify-between text-lg font-bold mt-4 pt-4 border-t border-dashed border-gray-300 dark:border-gray-700"
+                >
+                  <p>Total</p>
+                  <p>₹ <%= Math.floor((0.005 * subtotal) + subtotal + 30) %></p>
+                </div>
+              </div>
+              <div class="mt-8">
+                <button
+                  class="flex w-full min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-14 px-4 bg-primary text-white text-lg font-bold leading-normal tracking-[0.015em] place-order"
+                >
+                  <span class="truncate">Place Order</span>
+                </button>
+                <p
+                  class="text-xs text-center text-[#616f89] dark:text-gray-400 mt-4"
+                >
+                  By clicking "Pay", you agree to our
+                  <a class="underline text-primary" href="#"
+                    >Terms of Service</a
+                  >
+                  and
+                  <a class="underline text-primary" href="#">Privacy Policy</a>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+
+    <!-- flash message when user not fill full address detail -->
+    <div class="flash-message">
+      Required: Add your address and select a payment method before proceeding.
+    </div>
+  </body>
+
+  <script src="/javascripts/chekoutpage.js"></script>
+</html>

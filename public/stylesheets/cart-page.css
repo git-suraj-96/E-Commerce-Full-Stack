@@ -1,0 +1,16 @@
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #e9ecef;
+  position: fixed;
+  width: 100%;
+  padding: 22px 10px 22px 39px;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+
+.cart-number {
+  top: -11px;
+}

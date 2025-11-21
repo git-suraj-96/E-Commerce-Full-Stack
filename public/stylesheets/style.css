@@ -1,0 +1,278 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: #dadada;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #e9ecef;
+  position: fixed;
+  width: 100%;
+  padding: 5px 10px 5px 10px;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+
+.logo h2 {
+  font-family: "Courier New", Courier, monospace;
+}
+
+.navigation-links {
+  align-self: self-end;
+  margin-right: 66px;
+  padding: 4px;
+}
+
+.navigation-links ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  list-style: none;
+  position: relative;
+}
+
+.search-bar {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.search-bar input {
+  width: 90%;
+  padding: 13px;
+  border: none;
+  font-size: 13px;
+  outline: none;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.search-bar span {
+  width: 5%;
+  color: white;
+  background-color: white;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.cart-number {
+  position: absolute;
+  top: -24px;
+  right: -11px;
+  background-color: #ce1010;
+  font-size: 14px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+/* slide-bar starts from here */
+.slide-bar {
+  width: 100%;
+  height: 88vh;
+  margin-top: 5rem;
+}
+
+.slide-bar img {
+  min-width: max-content;
+  max-height: max-content;
+  width: 100vw;
+}
+
+/* explore everything starts from here */
+.explore-everything {
+  padding: 20px;
+}
+
+.explore-everything h2 {
+  text-align: center;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.explore-everything article {
+  width: 16%;
+  height: 20rem;
+  padding: 10px;
+}
+
+.article-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.article-section article img {
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  transform: scale(0.9);
+}
+.article-section article img:hover {
+  transform: scale(1);
+  transition: 2s ease-in-out;
+}
+.article-box {
+  z-index: 1;
+  background-color: white;
+}
+
+.article-section article h3 {
+  text-align: center;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+/* NEW ARRIVALS  */
+.n-a-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 53px;
+}
+
+.n-a-nav h2 {
+  font-size: 2rem;
+}
+.n-a-nav ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  list-style: none;
+}
+.n-a-nav ul li {
+  font-size: 14px;
+}
+.n-a-nav ul li {
+  cursor: pointer;
+}
+
+.underline{
+  text-decoration: underline;
+}
+
+.n-a-nav ul li:hover {
+  transition: 1s ease-in-out;
+  text-decoration: underline;
+}
+
+.n-a-article {
+  padding: 5px 53px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  cursor: pointer;
+}
+
+.n-a-article-image {
+  height: 27rem;
+  width: 20rem;
+}
+
+.n-a-a-p {
+  width: 19rem;
+  font-size: 15px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin-bottom: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: -11px;
+}
+.n-a-a-p:hover {
+  text-decoration: underline;
+}
+
+.n-a-v-a-p-b {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.n-a-v-a-p {
+  background-color: #c92424;
+  width: 13rem;
+  height: 3rem;
+  border: none;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  font-family: auto;
+}
+.n-a-v-a-p a{
+  text-decoration: none;
+  color: white;
+}
+
+/* footer section starts from here */
+footer {
+  width: 100%;
+  height: 30rem;
+  background-color: rgb(194, 184, 184);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 3rem;
+  margin-left: 0;
+}
+
+@media (max-width: 800px) {
+  .search-bar {
+    position: fixed;
+    top: 81px;
+    width: 100%;
+    left: 0;
+    background-color: #e9ecef;
+    padding: 10px 0;
+  }
+
+  .search-bar input {
+    font-size: 16px;
+    height: 100%;
+  }
+
+  .logo h2 {
+    width: 11rem;
+  }
+
+  .slide-bar{
+    margin-top: 10rem;
+    height: 0;
+    margin-bottom: 20rem;
+  }
+
+  .slide-bar img{
+    width: 100vw;
+        min-width: 0;
+    max-height: max-content;
+  }
+
+}
+
+@media (max-width : 600px) {
+  .slide-bar{
+    margin-bottom: 11rem;
+  }
+  .n-a-nav{
+  padding-left: 0;
+  padding-right: 0;
+}
+}

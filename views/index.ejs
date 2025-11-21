@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Men's Maxing</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <!-- HEADER STARTS FROM HERE -->
+    <header>
+      <nav>
+        <div class="logo">
+          <h2>Men's Maxing</h2>
+        </div>
+
+        <div class="search-bar">
+          <input class="search-box" type="search" placeholder="Search your prdoucts here..." />
+          <span
+            ><a class="search-anchor" href="#"><img src="/images/staticimages/search.png" alt="" /></a
+          ></span>
+        </div>
+
+        <div class="navigation-links">
+          <ul>
+            <li>
+              <a href="/home"
+                ><img src="/images/staticimages/home.png" alt="homeicon"
+              /></a>
+            </li>
+            <li>
+              <a href="#"
+                ><img src="/images/staticimages/user.png" alt="userIcon"
+              /></a>
+            </li>
+            <li>
+              <a href="/cart"
+                ><img
+                src="/images/staticimages/shopping-cart.png"
+                alt="carticon"
+                /></a>
+                <p class="cart-number"><%= cartItems.length %></p>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- MAIN SECTION STARTS FROM HERE -->
+    <main>
+      <!-- slidebar=starts from here -->
+      <div class="slide-bar">
+        <img
+          src="/images/staticimages/slide_bar_image_for_men'sMaxing.avif"
+          alt=""
+        />
+      </div>
+
+      <!-- Explore-Everything starts from here -->
+      <div class="explore-everything">
+        <h2>Explore Everything</h2>
+
+        <div class="article-section">
+          <article>
+            <a href="/productpage/T-SHIRT">
+              <img class="ankur" data-post="T-SHIRT"
+              src="https://powerlook.in/cdn/shop/files/t-shirt_1.jpg?v=1760899585&width=355"
+              alt=""
+            />
+            </a>
+            <h3>T-SHIRT</h3>
+          </article>
+          <article>
+            <a href="/productpage/SHIRT">
+              <img class="ankur" data-post="SHIRT"
+              src="https://powerlook.in/cdn/shop/files/shirt_4714331f-e79e-46c1-8969-ca75c07087b5.jpg?v=1760899586&width=355"
+              alt=""
+            />
+            </a>
+            <h3>SHIRT</h3>
+          </article>
+          <article>
+            <a href="/productpage/CARGO">
+              <img class="ankur" data-post = "CARGO"
+              src="https://powerlook.in/cdn/shop/files/cargo.jpg?v=1760899586&width=355"
+              alt=""
+            />
+            </a>
+            <h3>CARGO</h3>
+          </article>
+          <article>
+            <a href="/productpage/JEANS">
+              <img class="ankur" data-post="JEANS"
+              src="https://powerlook.in/cdn/shop/files/jeans.jpg?v=1760899585&width=355"
+              alt=""
+            />
+            </a>
+            <h3>JEANS</h3>
+          </article>
+          <article>
+            <a href="/productpage/DENIM">
+              <img class="ankur" data-post="DENIM"
+              src="https://powerlook.in/cdn/shop/files/jacket_701d7a22-01fa-440a-b01b-04abadcb63ae.jpg?v=1760899585&width=355"
+              alt=""
+            />
+            </a>
+            <h3>DENIM</h3>
+          </article>
+          <article>
+            <a href="/productpage/TOP DEALS">
+              <img class="ankur" data-post="TOP DEALS"
+              src="https://powerlook.in/cdn/shop/files/sale_category_1.jpg?v=1755250926&width=355"
+              alt=""
+            />
+            </a>
+            <h3>TOP DEALS</h3>
+          </article>
+        </div>
+      </div>
+
+      <!-- New-Arrivals starts from here -->
+       <div class="new-arrivals">
+        <!-- nav bar  -->
+        <div class="n-a-nav">
+          <div><h2>New Arrivals</h2></div>
+          <div>
+            <ul>
+              <li class="underline">T-SHIRT</li>
+              <li>SHIRT</li>
+              <li>CARGO</li>
+              <li>DENIM</li>
+              <li>ALL PRODUCTS</li>
+            </ul>
+          </div>
+        </div>
+       </div>
+
+       <!-- article section starts from here -->
+        <div class="n-a-article">
+
+          <% products.forEach(product => { %>
+            <article>
+              <a style="color: black; text-decoration : none;" href="/products/<%= product.description %>">
+                <div class="n-a-article-image" style="background-image: url('/images/uploads/<%= product.productImage %>');">
+                </div>
+                <p class="n-a-a-p"><%= product.description %></p>
+              </a>
+
+            <p class="n-a-price"> ₹ <%= product.price %></p>
+          </article>
+          <% }) %>
+
+          <!-- <article>
+            <div class="n-a-article-image" style="background-image: url('https://powerlook.in/cdn/shop/files/t-shirt_1.jpg?v=1760899585&width=355');">
+
+            </div>
+            <p class="n-a-a-p">Some description Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, veniam!</p>
+            <p> ₹ 1225</p>
+          </article> -->
+
+          
+
+
+        </div>
+        
+        <!-- view all products button -->
+         <div class="n-a-v-a-p-b">
+          <button class="n-a-v-a-p"><a href="/productpage/allproducts">VIEW ALL PRODUCTS</a></button>
+         </div>
+       
+    </main>
+
+    <!-- footer section starts from here -->
+     <footer>
+      <h1>Look's Maxing offer only men's clothes</h1>
+      <h2>It's created by Suraj Maurya</h2>
+     </footer>
+  </body>
+  <script src="/javascripts/main.js"></script>
+  <script src="/javascripts/product-detail-page.js"></script>
+  <script src="/javascripts/searchbar.js"></script>
+</html>

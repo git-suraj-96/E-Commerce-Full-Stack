@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="/stylesheets/admin.css" />
+  </head>
+  <body>
+    <h2 class="admin-heading">Admin Panel</h2>
+
+    <div class="form">
+      <form action="/upload-image" method="post" enctype="multipart/form-data">
+        <h3 class="admin-heading">Upload Product</h3>
+        <input
+          type="text"
+          placeholder="Enter product description..."
+          required
+          name="description"
+        />
+        <input type="number" placeholder="Product Price..." required name="price"/>
+        <select id="category" name="category">
+          <option value="T-SHIRT">T-SHIRT</option>
+          <option value="SHIRT">SHIRT</option>
+          <option value="JEANS">JEANS</option>
+          <option value="CARGO">CARGO</option>
+          <option value="DENIM">DENIM</option>
+        </select>
+        <div class="file">
+            <img src="/images/staticimages/upload.png" alt="image">
+            <input type="file" name="file" id="file" required >
+        </div>
+        <button type="submit" class="submit-btn">SUBMIT</button>
+      </form>
+    </div>
+
+    <% if(success ){ %>
+      <div class="flash-message">Product uploaded succesfuly.</div>
+    <%}%>
+
+  </body>
+
+  <script src="/javascripts/admin.js"></script>
+</html>

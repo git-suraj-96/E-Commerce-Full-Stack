@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prduct-Page</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/product-page.css" />
+  </head>
+  <body>
+    <!-- nav sectio starts from here -->
+    <header>
+      <nav>
+        <div class="logo">
+          <h2>Men's Maxing</h2>
+        </div>
+
+        <div class="search-bar">
+          <input class="search-box" type="search" placeholder="Search your prdoucts here..." />
+          <span
+            ><a  class="search-anchor" href="#"><img src="/images/staticimages/search.png" alt="" /></a
+          ></span>
+        </div>
+
+        <div class="navigation-links">
+          <ul>
+            <li>
+              <a href="/home"
+                ><img src="/images/staticimages/home.png" alt="userIcon"
+              /></a>
+            </li>
+            <li>
+              <a href="#"
+                ><img src="/images/staticimages/user.png" alt="userIcon"
+              /></a>
+            </li>
+            <li>
+              <a href="/cart"
+                ><img
+                  src="/images/staticimages/shopping-cart.png"
+                  alt="carticon"
+              /></a>
+            </li>
+            <p class="cart-number"><%= cartItems.length %></p>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- main section starts from here -->
+    <main>
+      <!-- filter slide -->
+      <aside>
+        
+      </aside>
+
+      <!-- all prduct looks inside this -->
+      <div class="container">
+        <% if(products.length > 0) {  products.forEach(product => { %>
+        <article>
+          <div class="c-image">
+            <a style="color: black; text-decoration : none;" href="/products/<%= product.description %>">
+              
+              <img
+              src="/images/uploads/<%= product.productImage %>"
+              alt="product-image"
+              />
+            </div>
+            <p>
+              <%= product.description %>
+            </p>
+          </a>
+          <p class="price">₹ <%= product.price %></p>
+        </article>
+        <% }) }else{ %>
+          <h2 class="no-items">Sorry, No items found</h2>
+       <% } %>        
+
+        <!-- <article>
+          <div class="c-image">
+            <img
+              src="https://powerlook.in/cdn/shop/files/t-shirt_1.jpg?v=1760899585&width=355"
+              alt="product-image"
+            />
+          </div>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae,
+            facere.
+          </p>
+          <p class="price">₹ 1200</p>
+        </article> -->
+
+
+      </div>
+    </main>
+
+    <!-- footer section -->
+    <footer>
+      <h1>Look's Maxing offer only men's clothes</h1>
+      <h2>It's created by Suraj Maurya</h2>
+    </footer>
+  </body>
+
+  <script src="/javascripts/searchbar.js"></script>
+</html>

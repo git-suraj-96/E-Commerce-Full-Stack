@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product-Detail-Page</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/product-detail-page.css" />
+  </head>
+  <body>
+    <!-- HEADER STARTS FROM HERE -->
+    <header>
+      <nav>
+        <div class="logo">
+          <h2>Men's Maxing</h2>
+        </div>
+
+        <div class="search-bar">
+          <input type="search" placeholder="Search your prdoucts here..." />
+          <span
+            ><a href="#"><img src="/images/staticimages/search.png" alt="" /></a
+          ></span>
+        </div>
+
+        <div class="navigation-links">
+          <ul>
+            <li>
+              <a href="/home"
+                ><img src="/images/staticimages/home.png" alt="userIcon"
+              /></a>
+            </li>
+            <li>
+              <a href="#"
+                ><img src="/images/staticimages/user.png" alt="userIcon"
+              /></a>
+            </li>
+            <li>
+              <a href="/cart"
+                ><img
+                  src="/images/staticimages/shopping-cart.png"
+                  alt="carticon"
+              /></a>
+            </li>
+            <p class="cart-number"><%= cartItems.length %></p>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!--main section starts from here -->
+    <main>
+      <div class="p-d-p-container">
+        <aside class="left">
+          <div class="product-image">
+            <img
+              src="/images/uploads/<%= product.productImage %>"
+              alt="prduct-image"
+            />
+          </div>
+        </aside>
+
+        <aside class="right">
+          <div>
+            <p class="p-d-p-d">
+              <%= product.description %>
+            </p>
+            <p class="p-d-p-p">₹ 1000</p>
+          </div>
+
+          <div class="size">
+            <p>SIZE : <span>S</span></p>
+            <div class="size-box">
+              <div>S</div>
+              <div>M</div>
+              <div>L</div>
+              <div>XL</div>
+              <div>2XL</div>
+              <div>3XL</div>
+              <div>4XL</div>
+            </div>
+          </div>
+
+          <div class="add-cart-btn">
+            <button class="add-to-cart" data-post="<%= product._id %>" >ADD TO CART</button>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <!-- footer section starts from here -->
+    <footer>
+      <h1>Look's Maxing offer only men's clothes</h1>
+      <h2>It's created by Suraj Maurya</h2>
+    </footer>
+  </body>
+
+  <script src="/javascripts/product-detail-page.js"></script>
+</html>

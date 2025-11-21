@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Shopping Cart</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/cart-page.css" />
+    <style type="text/tailwindcss">
+      body {
+        font-family: "Inter", sans-serif;
+      }
+
+    </style>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1754cf",
+              "background-light": "#f6f6f8",
+              "background-dark": "#111621",
+            },
+            fontFamily: {
+              display: ["Inter"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="font-display bg-background-light dark:bg-background-dark text-[#2D2D2D] dark:text-gray-200"
+  >
+    <div
+      class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden"
+    >
+      <main class="layout-container flex h-full grow flex-col">
+        <div class="px-4 sm:px-6 lg:px-10 flex flex-1 justify-center py-5">
+          <div
+            class="layout-content-container flex flex-col w-full max-w-7xl flex-1"
+          >
+            <!-- PageHeading -->
+            <div class="flex flex-wrap justify-between gap-3 pt-4 pb-8">
+              <h1
+                class="text-[#2D2D2D] dark:text-white text-4xl font-black leading-tight tracking-[-0.033em] shopping-bag"
+              >
+                Shopping Bag (<%= cartItems.length %> items)
+              </h1>
+            </div>
+            <div
+              class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-start"
+            >
+              <!-- Product List Area (Left Column) -->
+              <div class="lg:col-span-2 flex flex-col gap-4 parent-tag  ">
+                <!-- ListItem -->
+                <% if(cartItems.length > 0){ cartItems.forEach(item => { %>
+                  <div
+                  class="flex flex-col sm:flex-row gap-6 bg-white dark:bg-gray-800/50 p-6 rounded-xl border border-gray-200 dark:border-gray-700 justify-between items-start cart-item"
+                >
+                  <div class="flex w-full items-start gap-4">
+                    <div
+                      class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg h-28 w-28 flex-shrink-0"
+                      data-alt="Classic Crew Neck T-Shirt in white"
+                      style="
+                        background-image: url('/images/uploads/<%= item.productImage %>');
+                      "
+                    ></div>
+                    <div class="flex flex-1 flex-col justify-center gap-1">
+                      <p
+                        class="text-[#2D2D2D] dark:text-white text-base font-semibold leading-normal"
+                      >
+                        <%= item.description %>
+                      </p>
+                      <p
+                        class="text-gray-500 dark:text-gray-400 text-sm font-normal leading-normal"
+                      >
+                        ₹ <%= item.price %>
+                      </p>
+
+                      <div
+                        class="flex items-center gap-2 text-[#2D2D2D] dark:text-white mt-3"
+                      >
+                        <button
+                          class="text-base font-medium leading-normal flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-700 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600"
+                        >
+                          -
+                        </button>
+                        <input
+                          class="text-base font-medium leading-normal w-8 p-0 text-center bg-transparent focus:outline-0 focus:ring-0 focus:border-none border-none [appearance:textfield] [&amp;::-webkit-inner-spin-button]:appearance-none [&amp;::-webkit-outer-spin-button]:appearance-none"
+                          type="number"
+                          value="1"
+                        />
+                        <button
+                          class="text-base font-medium leading-normal flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-700 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600"
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="flex flex-row sm:flex-col items-center gap-4 self-start pt-2 parent-tag-child"
+                  >
+                    <button
+                      class="text-gray-500 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-500"
+                    >
+                      <span class="material-symbols-outlined text-xl delete-cart" data-post = "<%= item._id %>"
+                        >delete</span
+                      >
+                    </button>
+                    <button
+                      class="text-gray-500 dark:text-gray-400 hover:text-primary"
+                    >
+                      <span class="material-symbols-outlined text-xl"
+                        >bookmark_add</span
+                      >
+                    </button>
+                  </div>
+                </div>
+                <% })} %>
+
+                <!-- ListItem 1 -->
+                <!-- <div
+                  class="flex flex-col sm:flex-row gap-6 bg-white dark:bg-gray-800/50 p-6 rounded-xl border border-gray-200 dark:border-gray-700 justify-between items-start"
+                >
+                  <div class="flex w-full items-start gap-4">
+                    <div
+                      class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg h-28 w-28 flex-shrink-0"
+                      data-alt="Classic Crew Neck T-Shirt in white"
+                      style="
+                        background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBWRPobz7N9q32faUjTzXu_4Me-EkMoAE6BaqIgSNXgzznJVe9giYmzHSMhsbttIWcfdLTbhGGCJm2vcxdIMMNeYbT7aBvaV2gOSD-QlNeShF2zSMIgZim5Kz_Q6c2rEUUPSHowjaQVQ_T9e4tYzOaSvyRJwSZizaE6wi9bpj8Xl2jR7wJkjmfDtjIxESsObHkBzL4dWMj5ya4YX7lHr8UD_yLwPEEPrueF66MwVckgcy7aVy6HeFBneYVO-gwaY7yIZV1mKh-Vhwg');
+                      "
+                    ></div>
+                    <div class="flex flex-1 flex-col justify-center gap-1">
+                      <p
+                        class="text-[#2D2D2D] dark:text-white text-base font-semibold leading-normal"
+                      >
+                        Classic Crew Neck T-Shirt
+                      </p>
+                      <p
+                        class="text-gray-500 dark:text-gray-400 text-sm font-normal leading-normal"
+                      >
+                        $25.00
+                      </p>
+
+                      <div
+                        class="flex items-center gap-2 text-[#2D2D2D] dark:text-white mt-3"
+                      >
+                        <button
+                          class="text-base font-medium leading-normal flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-700 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600"
+                        >
+                          -
+                        </button>
+                        <input
+                          class="text-base font-medium leading-normal w-8 p-0 text-center bg-transparent focus:outline-0 focus:ring-0 focus:border-none border-none [appearance:textfield] [&amp;::-webkit-inner-spin-button]:appearance-none [&amp;::-webkit-outer-spin-button]:appearance-none"
+                          type="number"
+                          value="1"
+                        />
+                        <button
+                          class="text-base font-medium leading-normal flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-700 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600"
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="flex flex-row sm:flex-col items-center gap-4 self-start pt-2"
+                  >
+                    <button
+                      class="text-gray-500 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-500"
+                    >
+                      <span class="material-symbols-outlined text-xl"
+                        >delete</span
+                      >
+                    </button>
+                    <button
+                      class="text-gray-500 dark:text-gray-400 hover:text-primary"
+                    >
+                      <span class="material-symbols-outlined text-xl"
+                        >bookmark_add</span
+                      >
+                    </button>
+                  </div>
+                </div> -->
+              
+              </div>
+              <!-- Order Summary Card (Right Column) -->
+               <% if(cartItems.length > 0){ %>
+                 <div class="lg:col-span-1 order-summary">
+                   <div class="sticky top-10">
+                     <div
+                       class="bg-white dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 p-6 flex flex-col gap-4"
+                     >
+                       <h2
+                         class="text-xl font-bold text-[#2D2D2D] dark:text-white"
+                       >
+                         Order Summary
+                       </h2>
+                       <div class="space-y-3 text-sm">
+                         <div class="flex justify-between">
+                           <span class="text-gray-500 dark:text-gray-400"
+                             >Subtotal</span
+                           >
+                           <span class="font-medium text-[#2D2D2D] dark:text-white sub-total"
+                             >₹ <%= totalPrice %></span
+                           >
+                         </div>
+                         <div class="flex justify-between">
+                           <span class="text-gray-500 dark:text-gray-400"
+                             >Shipping</span
+                           >
+                           <span class="font-medium text-[#2D2D2D] dark:text-white"
+                             >Free Shipping</span
+                           >
+                         </div>
+                         <div class="flex justify-between">
+                           <span class="text-gray-500 dark:text-gray-400"
+                             >Taxes</span
+                           >
+                           <span
+                             class="font-medium text-gray-500 dark:text-gray-400"
+                             >Included</span
+                           >
+                         </div>
+                       </div>
+                       <div
+                         class="border-t border-gray-200 dark:border-gray-700 pt-4"
+                       >
+                         <div class="flex justify-between text-base font-bold">
+                           <span class="text-[#2D2D2D] dark:text-white"
+                             >Order Total</span
+                           >
+                           <span class="text-[#2D2D2D] dark:text-white total"
+                             >₹ <%= totalPrice %></span
+                           >
+                         </div>
+                       </div>
+                       <div class="flex flex-col gap-2 pt-2">
+                         <label
+                           class="text-sm font-medium text-gray-500 dark:text-gray-400"
+                           for="discount-code"
+                           >Discount Code</label
+                         >
+                         <div class="flex gap-2">
+                           <input
+                             class="form-input flex-1 rounded-lg bg-gray-100 dark:bg-gray-900 border-gray-300 dark:border-gray-600 focus:ring-primary focus:border-primary text-sm"
+                             id="discount-code"
+                             placeholder="Enter code"
+                           />
+                           <button
+                             class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-gray-200 dark:bg-gray-700 text-[#2D2D2D] dark:text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-4 hover:bg-gray-300 dark:hover:bg-gray-600"
+                           >
+                             Apply
+                           </button>
+                         </div>
+                       </div>
+                       <button
+                         class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 bg-primary text-white gap-2 text-base font-bold leading-normal tracking-[0.015em] mt-4 hover:bg-primary/90 transition-colors checkout-btn"
+                       >
+                         Proceed to Checkout
+                       </button>
+                       <div
+                         class="flex items-center justify-center gap-4 pt-4 text-gray-500 dark:text-gray-400"
+                       >
+                         <div class="flex items-center gap-2 text-xs">
+                           <span class="material-symbols-outlined text-base"
+                             >lock</span
+                           >
+                           <span>Secure SSL Checkout</span>
+                         </div>
+                         <div class="flex items-center gap-2 text-xs">
+                           <span class="material-symbols-outlined text-base"
+                             >replay</span
+                           >
+                           <span>Easy 30-Day Returns</span>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+               <%}%>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+
+  <script src="/javascripts/cart.js"></script>
+</html>
