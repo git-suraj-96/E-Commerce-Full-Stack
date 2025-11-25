@@ -445,6 +445,7 @@ router.post("/confirmOrder", async (req, res) => {
     return res.json({
       success: true,
       redirect: "/orderConfirmation4564587123853212836489798",
+      customer : fullAddress
     });
   } catch (err) {
     return res.json({
